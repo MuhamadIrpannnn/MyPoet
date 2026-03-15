@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Haloo Poeet</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- SPLASH SCREEN -->
+  <div class="splash" id="splash">
+    <div class="splash-inner">
+      <div class="splash-balls">
+        <span class="sball sball-blue"></span>
+        <span class="sball sball-red"></span>
+        <span class="sball sball-yellow"></span>
+      </div>
+      <div class="splash-emoji">⚽🙌</div>
+      <h2 class="splash-title">hii, Poet!</h2>
+      <p class="splash-sub">Sedikit Materi Kerbarcaan wkwk🙏</p>
+      <button class="splash-btn" id="splashBtn">
+        Mari Belajar🎵
+      </button>
+      <p class="splash-hint">*Materi kali ini cukup beda dan menarik</p>
+    </div>
+  </div>
+
+  <!-- Progress Bar -->
+  <div class="progress-bar" id="progressBar"></div>
+
+  <!-- Audio musik — play setelah splash diklik -->
+  <audio id="bgMusic" loop>
+    <source src="assets/images/liveforever.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Floating Navbar — muncul saat scroll ke section closing -->
+  <nav class="floatnav" id="floatnav" style="opacity:0; pointer-events:none; transform:translateX(-50%) translateY(20px);">
+    <a href="index.html" class="active">
+      <span class="nav-icon">⚽</span>Barca
+    </a>
+    <div class="nav-divider"></div>
+    <a href="feedback.html" class="nav-feedback">
+      <span class="nav-icon">💙</span>Feedback
+    </a>
+  </nav>
+
+  <!-- Background Blobs -->
+  <div class="bg-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="blob blob-4"></div>
+  </div>
+
+  <!-- Floating Deco Icons -->
+  <span class="deco-float deco-1">⚽</span>
+  <span class="deco-float deco-2">💙</span>
+  <span class="deco-float deco-3">⚽</span>
+  <span class="deco-float deco-4">❤️</span>
+  <span class="deco-float deco-5">✨</span>
+  <span class="deco-float deco-6">⚽</span>
+
+  <main>
+
+    <!-- SECTION 1: HERO -->
+    <section id="hero">
+      <div class="hero-inner">
+        <div class="hero-badge">⚽ Welcome, Poet 👋</div>
+        <h1 class="hero-title">Kenalan dikit sama Barcelona yuu</h1>
+        <p class="hero-subtitle">Ini bukan propaganda kok… cuma sharing dikit aje</p>
+        <p class="hero-desc">
+          Secara psikologi, rasa suka biasanya muncul dari hal sederhana
+          dari yang awalnya cuma lihat, jadi terbiasa, lalu lama-lama terasa dekat.
+        </p>
+        <div class="hero-poet">💬 Tenang Poet, ini bukan propaganda atau hal hal negatif tentang madrid.</div>
+        <div class="hero-balls">
+          <span class="ball ball-blue"></span>
+          <span class="ball ball-red"></span>
+          <span class="ball ball-yellow"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: TENTANG BARCA -->
+    <section id="about">
+      <div class="section-header reveal">
+        <span class="sec-tag">⚽ About barca</span>
+        <div class="sec-divider"></div>
+        <h2 class="sec-title">Sedikit Tentang Barca</h2>
+      </div>
+      <div class="cards-grid">
+        <div class="card reveal">
+          <div class="card-icon">💬</div>
+          <div class="card-label">Motto Klub</div>
+          <div class="card-headline">Més que un club</div>
+          <p class="card-body">Artinya "lebih dari sekadar klub". Buat banyak orang, Barcelona bukan cuma tim bola tapi juga identitas dan kebanggaan.</p>
+          <p class="card-note">Harapannya sih kita juga gitu lebih dari sekedar ehmm</p>
+        </div>
+        <div class="card reveal">
+          <div class="card-icon">🎨</div>
+          <div class="card-label">Filosofi Barca</div>
+          <p class="card-body">Barcelona terkenal dengan sepak bola yang indah, sabar, dan fokus menguasai bola. Banyak orang bilang nonton Barca itu seperti seni dalam sepak bola.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card-icon">🔄</div>
+          <div class="card-label">Gaya Bermain</div>
+          <div class="card-headline">Tiki-taka</div>
+          <p class="card-body">Operan pendek cepat yang bikin lawan capek ngejar bola duluan.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card-icon">👑</div>
+          <div class="card-label">Tokoh Penting</div>
+          <div class="card-headline">Johan Cruyff</div>
+          <p class="card-body">Dia adalah sosok yang membentuk filosofi bermain Barcelona sampai sekarang.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card-icon">🌱</div>
+          <div class="card-label">Akademi Legendaris</div>
+          <div class="card-headline">La Masia</div>
+          <p class="card-body">Tempat lahir banyak pemain hebat Barcelona, contoh Lionel Messi.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card-icon">⭐</div>
+          <div class="card-label">Legenda Klub</div>
+          <div class="card-headline">Lionel Messi</div>
+          <p class="card-body">Salah satu pemain terbaik dalam sejarah Barcelona dan terbaik diidunia.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card-icon">🏟️</div>
+          <div class="card-label">Stadion Ikonik</div>
+          <div class="card-headline">Camp Nou</div>
+          <p class="card-body">Stadion kebanggaan Barcelona dan salah satu yang terbesar di dunia tapi sekarang masih proses renovasi.</p>
+        </div>
+        <div class="card card-special reveal">
+          <div class="card-icon">🔥</div>
+          <div class="card-label">Rival Abadi</div>
+          <div class="card-headline">El Clásico</div>
+          <p class="card-body">Ini pertandingan antara Barcelona dan Real Madrid yang biasanya selalu panas.</p>
+          <p class="card-note">panasnya sih kalau kamu masih madrid tapi kalau sudah barca nggak kok😌</p>
+        </div>
+        <div class="card reveal">
+          <div class="card-icon">💙</div>
+          <div class="card-label">Fans Barcelona</div>
+          <div class="card-headline">Culé / Culers</div>
+          <p class="card-body">Fans Barcelona disebut Culé atau Culers. Ini sebutan untuk fans Barcelona di seluruh dunia.</p>
+        </div>
+      </div>
+      <div class="bottom-note reveal">
+        Dalam perspektif psikologi, pemahaman terhadap simbol, istilah, dan filosofi tertentu dapat
+        membangun keterikatan emosional secara bertahap.<br>
+        Ketika konsep seperti <strong>tiki-taka</strong>, <strong>La Masia</strong>, atau <strong>"Més que un club"</strong> mulai dipahami,
+        biasanya itu menandakan munculnya kedekatan dengan identitas Barcelona.
+      </div>
+    </section>
+
+    <!-- SECTION 3: RIVALRY -->
+    <section id="rivalry">
+      <div class="section-header reveal">
+        <span class="sec-tag">⚡ masalah kecil kita</span>
+        <div class="sec-divider"></div>
+        <h2 class="sec-title">Madrid vs Barca <span class="sec-subtitle">(El Clásico)</span></h2>
+      </div>
+      <div class="rivalry-wrap">
+        <div class="rivalry-card reveal">
+          <span class="rivalry-icon">🤍</span>
+          <div class="rivalry-club">Real Madrid</div>
+          <p class="rivalry-desc">huhuhu poet dedemit.</p>
+          <span class="heart-badge">🤍 Los Blancos</span>
+        </div>
+        <div class="vs-badge">VS</div>
+        <div class="rivalry-card rivalry-barca reveal">
+          <span class="rivalry-icon">💙</span>
+          <div class="rivalry-club rivalry-club-barca">FC Barcelona</div>
+          <p class="rivalry-desc">belah dada gw isinya barca semua haha</p>
+          <span class="heart-badge">💙 Culés</span>
+        </div>
+      </div>
+      <div class="rivalry-note reveal">
+        <p>secara teori sih kita memang rival</p>
+        <p>dan katanya perbedaan itu malah bikin lebih seru.</p>
+        <div class="rivalry-playful">💬 tapi kalau sama bukannya lebih baik yaa? hehe🫣.</div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: CLOSING -->
+    <section id="closing">
+      <div class="section-header reveal">
+        <span class="sec-tag">🙏 penutup</span>
+        <div class="sec-divider"></div>
+        <h2 class="sec-title">Makasih yaa sudah dibacaa</h2>
+      </div>
+      <div class="closing-grid">
+        <div class="video-wrap reveal">
+          <div class="vc-corner vc-tl"></div>
+          <div class="vc-corner vc-tr"></div>
+          <div class="vc-corner vc-bl"></div>
+          <div class="vc-corner vc-br"></div>
+          <div class="vc-glow"></div>
+          <div class="vc-inner">
+            <video id="closingVideo" src="assets/images/video.mp4" autoplay muted loop playsinline></video>
+            <div class="vc-topbar">
+              <span class="vc-dot red"></span>
+              <span class="vc-dot yellow"></span>
+              <span class="vc-dot blue"></span>
+              <span class="vc-topbar-title">VISCAA BARCAAA</span>
+            </div>
+            <div class="vc-bottombar">
+              <span class="vc-label">👋Makasih Poet!</span>
+              <div class="vc-controls">
+                <button class="vc-btn" id="playPauseBtn" onclick="toggleVideo()">⏸</button>
+                <button class="vc-btn" id="videoMuteBtn" onclick="toggleVideoMute()">🔇</button>
+              </div>
+            </div>
+          </div>
+          <div class="vc-badge vc-b1">⚽</div>
+          <div class="vc-badge vc-b2">💙</div>
+          <div class="vc-badge vc-b3">✨</div>
+          <div class="vc-badge vc-b4">❤️</div>
+        </div>
+        <div class="closing-text reveal">
+          <h3 class="closing-title">Makasih sudah baca sampai sini</h3>
+          <p class="closing-p">
+            Kalau kamu sampai di bagian ini sih berarti kamu beneran baca semuanya.
+            <strong>Respect Poet😻</strong>
+          </p>
+          <div class="closing-box">
+            <p>
+              Setiap klub punya cerita, pemain, dan sejarahnya sendiri.
+              Barcelona adalah salah satu klub yang dikenal karena filosofi
+              bermainnya dan akademinya yang melahirkan banyak pemain hebat.
+              <br><br>
+              Itulah sedikit gambaran tentang dunia Barcelona.
+            </p>
+          </div>
+          <p class="closing-final">
+            Kalau suatu saat istilah seperti <strong>tiki-taka</strong> atau <strong>La Masia</strong>
+            tiba-tiba terasa familiar… ya mungkin Barcelona sudah mulai nyangkut sedikit.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    Made with <span class="footer-heart">❤️</span> · For Dinda · 💕
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
