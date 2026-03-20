@@ -3,251 +3,501 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Haloo Poeet</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,600&display=swap" rel="stylesheet" />
+  <title>Happy Eid Mubarak🌙</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:   #0F1F3D;
+      --navy2:  #1a2f52;
+      --red:    #C0392B;
+      --red2:   #e74c3c;
+      --brown:  #8B5E3C;
+      --brown2: #a97044;
+      --gold:   #F4C430;
+      --cream:  #FFF8EE;
+      --soft:   #c4b8a8;
+      --white:  #FFFFFF;
+      --ff:     'Plus Jakarta Sans', sans-serif;
+      --fd:     'Instrument Serif', serif;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--ff);
+      background: var(--navy);
+      color: var(--cream);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* ── Bintang background ── */
+    .stars {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      overflow: hidden;
+    }
+    .star {
+      position: absolute;
+      border-radius: 50%;
+      background: white;
+      animation: twinkle var(--d, 3s) ease-in-out infinite alternate;
+    }
+    @keyframes twinkle {
+      from { opacity: var(--min, 0.1); transform: scale(1); }
+      to   { opacity: var(--max, 0.8); transform: scale(1.3); }
+    }
+
+    /* ── Splash ── */
+    .splash {
+      position: fixed; inset: 0; z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(160deg, #0a1628 0%, #1a0f2e 50%, #2d0f0f 100%);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .splash.hide { opacity: 0; transform: scale(1.06); pointer-events: none; }
+
+    .splash-inner {
+      text-align: center;
+      display: flex; flex-direction: column; align-items: center; gap: 16px;
+      padding: 40px 32px;
+    }
+    .splash-moon {
+      font-size: 5rem;
+      animation: moonFloat 2s ease-in-out infinite alternate;
+      filter: drop-shadow(0 0 20px rgba(244,196,48,0.5));
+    }
+    @keyframes moonFloat {
+      from { transform: translateY(0) rotate(-5deg); }
+      to   { transform: translateY(-16px) rotate(5deg); }
+    }
+    .splash-title {
+      font-family: var(--fd); font-style: italic;
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      color: var(--gold); line-height: 1.2;
+    }
+    .splash-sub {
+      font-size: 0.95rem; color: var(--soft); font-weight: 500;
+    }
+    .splash-btn {
+      margin-top: 8px; padding: 14px 36px;
+      border-radius: 50px; border: none; cursor: pointer;
+      background: linear-gradient(135deg, var(--gold), #e8a820);
+      color: var(--navy); font-family: var(--ff);
+      font-size: 0.95rem; font-weight: 800;
+      box-shadow: 0 8px 28px rgba(244,196,48,0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+      letter-spacing: 0.02em;
+    }
+    .splash-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(244,196,48,0.45); }
+
+    .splash-dots { display: flex; gap: 8px; }
+    .sdot {
+      width: 8px; height: 8px; border-radius: 50%;
+      animation: bounce 1.4s ease-in-out infinite;
+    }
+    .sdot:nth-child(1) { background: var(--red);   }
+    .sdot:nth-child(2) { background: var(--gold);  animation-delay: 0.2s; }
+    .sdot:nth-child(3) { background: var(--brown2); animation-delay: 0.4s; }
+    @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+
+    /* ── Progress Bar ── */
+    .progress-bar {
+      position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+      background: linear-gradient(90deg, var(--red), var(--gold), var(--brown2));
+      z-index: 999; transition: width 0.1s;
+    }
+
+    /* ── Navbar ── */
+    .floatnav {
+      position: fixed; bottom: 20px; left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      z-index: 997; opacity: 0; pointer-events: none;
+      display: flex; align-items: center; gap: 4px;
+      background: rgba(15,31,61,0.92);
+      backdrop-filter: blur(20px);
+      border-radius: 24px; padding: 10px 14px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(244,196,48,0.15);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .floatnav.visible { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .floatnav a {
+      display: flex; flex-direction: column; align-items: center; gap: 3px;
+      padding: 9px 18px; border-radius: 16px; text-decoration: none;
+      font-size: 0.7rem; font-weight: 800; color: var(--soft);
+      transition: all 0.2s; white-space: nowrap;
+    }
+    .floatnav a .nav-icon { font-size: 1.3rem; line-height: 1; }
+    .floatnav a:hover { background: rgba(244,196,48,0.1); color: var(--gold); transform: translateY(-2px); }
+    .floatnav a.active { background: linear-gradient(135deg, var(--red), var(--brown)); color: white; }
+    .nav-divider { width: 1px; height: 32px; background: rgba(255,255,255,0.08); margin: 0 2px; }
+    .floatnav a.nav-ruang {
+      background: rgba(192,57,43,0.15); color: var(--red2);
+      border: 1px solid rgba(192,57,43,0.2);
+    }
+    .floatnav a.nav-ruang:hover { background: var(--red); color: white; }
+
+    /* ── Layout ── */
+    main { position: relative; z-index: 1; padding-bottom: 100px; }
+
+    /* ════════════════════
+       SECTION 1 — HERO
+       ════════════════════ */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 100px 24px 60px;
+      position: relative;
+    }
+
+    .hero-inner { max-width: 680px; margin: 0 auto; }
+
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(244,196,48,0.12);
+      border: 1px solid rgba(244,196,48,0.25);
+      border-radius: 50px; padding: 6px 18px;
+      font-size: 0.78rem; font-weight: 700; color: var(--gold);
+      margin-bottom: 28px; letter-spacing: 0.04em;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero-moon-deco {
+      font-size: 4.5rem; margin-bottom: 20px; display: block;
+      filter: drop-shadow(0 0 24px rgba(244,196,48,0.4));
+      animation: fadeUp 0.6s 0.05s ease both, moonFloat 4s ease-in-out infinite alternate;
+    }
+
+    .hero-title {
+      font-family: var(--fd); font-style: italic;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      line-height: 1.15; margin-bottom: 8px;
+      background: linear-gradient(135deg, var(--cream) 30%, var(--gold));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem; color: var(--soft); font-weight: 500;
+      margin-bottom: 36px; line-height: 1.6;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    /* Ornamen garis ── */
+    .hero-ornament {
+      display: flex; align-items: center; justify-content: center;
+      gap: 12px; margin-bottom: 36px;
+      animation: fadeUp 0.6s 0.25s ease both;
+    }
+    .orn-line {
+      height: 1px; width: 60px;
+      background: linear-gradient(90deg, transparent, var(--gold));
+    }
+    .orn-line.right { background: linear-gradient(90deg, var(--gold), transparent); }
+    .orn-diamond { color: var(--gold); font-size: 0.8rem; }
+
+    /* ════════════════════
+       SECTION 2 — PESAN
+       ════════════════════ */
+    #pesan {
+      max-width: 720px; margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    .pesan-card {
+      background: linear-gradient(160deg, rgba(26,47,82,0.8), rgba(45,15,15,0.6));
+      border: 1px solid rgba(244,196,48,0.12);
+      border-radius: 32px; padding: 44px 40px;
+      position: relative; overflow: hidden;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.3);
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+    @media (max-width: 480px) { .pesan-card { padding: 32px 24px; } }
+
+    /* Decorative corner */
+    .pesan-card::before {
+      content: '✦';
+      position: absolute; top: 20px; right: 24px;
+      font-size: 1.5rem; color: rgba(244,196,48,0.15);
+    }
+    .pesan-card::after {
+      content: '';
+      position: absolute; bottom: -40px; left: -40px;
+      width: 180px; height: 180px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(192,57,43,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .pesan-from {
+      font-size: 0.72rem; font-weight: 800; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--brown2);
+      margin-bottom: 20px; display: flex; align-items: center; gap: 8px;
+    }
+    .pesan-from::before {
+      content: ''; display: block;
+      width: 20px; height: 1px; background: var(--brown2);
+    }
+
+    .pesan-main {
+      font-family: var(--fd); font-style: italic;
+      font-size: clamp(1.5rem, 3.5vw, 2rem);
+      line-height: 1.5; color: var(--cream);
+      margin-bottom: 28px;
+    }
+    .pesan-main .highlight {
+      color: var(--gold);
+      -webkit-text-fill-color: var(--gold);
+    }
+
+    .pesan-divider {
+      height: 1px; margin: 28px 0;
+      background: linear-gradient(90deg, transparent, rgba(244,196,48,0.2), transparent);
+    }
+
+    .pesan-body {
+      font-size: 0.95rem; line-height: 1.85;
+      color: rgba(255,248,238,0.75); font-weight: 500;
+    }
+    .pesan-body p { margin-bottom: 16px; }
+    .pesan-body p:last-child { margin-bottom: 0; }
+    .pesan-body strong { color: var(--cream); font-weight: 700; }
+    .pesan-body em { font-style: italic; color: var(--gold); }
+
+    .pesan-sign {
+      margin-top: 32px;
+      display: flex; align-items: center; justify-content: flex-end; gap: 12px;
+    }
+    .pesan-sign-line {
+      height: 1px; flex: 1; max-width: 80px;
+      background: linear-gradient(90deg, transparent, rgba(244,196,48,0.3));
+    }
+    .pesan-sign-name {
+      font-family: var(--fd); font-style: italic;
+      font-size: 1.1rem; color: var(--gold);
+    }
+
+    /* ════════════════════
+       SECTION 3 — KETUPAT DECO
+       ════════════════════ */
+    .deco-section {
+      display: flex; justify-content: center; align-items: center;
+      gap: 20px; padding: 0 24px 60px;
+      animation: fadeUp 0.6s 0.5s ease both;
+    }
+    .deco-item {
+      text-align: center;
+      background: rgba(26,47,82,0.5);
+      border: 1px solid rgba(244,196,48,0.1);
+      border-radius: 20px; padding: 20px 24px;
+      flex: 1; max-width: 160px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .deco-item:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.3); }
+    .deco-item .deco-emoji { font-size: 2.2rem; margin-bottom: 8px; display: block; }
+    .deco-item .deco-text { font-size: 0.75rem; color: var(--soft); font-weight: 600; }
+
+    /* ════════════════════
+       FOOTER
+       ════════════════════ */
+    footer {
+      text-align: center; padding: 32px 24px;
+      font-size: 0.8rem; color: rgba(196,184,168,0.4);
+      border-top: 1px solid rgba(255,255,255,0.04);
+      position: relative; z-index: 1;
+    }
+
+    /* ── Reveal animation ── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- SPLASH SCREEN -->
+  <!-- Stars -->
+  <div class="stars" id="stars"></div>
+
+  <!-- Splash -->
   <div class="splash" id="splash">
     <div class="splash-inner">
-      <div class="splash-balls">
-        <span class="sball sball-blue"></span>
-        <span class="sball sball-red"></span>
-        <span class="sball sball-yellow"></span>
+      <div class="splash-dots">
+        <div class="sdot"></div>
+        <div class="sdot"></div>
+        <div class="sdot"></div>
       </div>
-      <div class="splash-emoji">⚽🙌</div>
-      <h2 class="splash-title">hii, Poet!</h2>
-      <p class="splash-sub">Sedikit Materi Kerbarcaan wkwk🙏</p>
-      <button class="splash-btn" id="splashBtn">
-        Mari Belajar🎵
-      </button>
-      <p class="splash-hint">*Materi kali ini cukup beda dan menarik</p>
+      <div class="splash-moon">🌙</div>
+      <h2 class="splash-title">Happy Eid Al-Fitr<br>Adinda Meisyah</h2>
+      <p class="splash-sub">. . . . . . . .</p>
+      <button class="splash-btn" id="splashBtn">Openn🌙</button>
     </div>
   </div>
 
-  <!-- Progress Bar -->
+  <!-- Progress bar -->
   <div class="progress-bar" id="progressBar"></div>
 
-  <!-- Audio musik — play setelah splash diklik -->
+  <!-- Audio -->
   <audio id="bgMusic" loop>
-    <source src="assets/images/liveforever.mp3" type="audio/mpeg">
+    <source src="assets/images/iniabadi.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- Floating Navbar — muncul saat scroll ke section closing -->
-  <nav class="floatnav" id="floatnav" style="opacity:0; pointer-events:none; transform:translateX(-50%) translateY(20px);">
+  <!-- Navbar -->
+  <nav class="floatnav" id="floatnav">
     <a href="index.html" class="active">
-      <span class="nav-icon">⚽</span>Barca
+      <span class="nav-icon">🌙</span>Lebaran
     </a>
     <div class="nav-divider"></div>
-    <a href="feedback.html" class="nav-feedback">
-      <span class="nav-icon">💙</span>Feedback
+    <a href="ruang-comingsoon.html" class="nav-ruang">
+      <span class="nav-icon">💌</span>Ruang Kamu
     </a>
   </nav>
 
-  <!-- Background Blobs -->
-  <div class="bg-blobs">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
-    <div class="blob blob-4"></div>
-  </div>
-
-  <!-- Floating Deco Icons -->
-  <span class="deco-float deco-1">⚽</span>
-  <span class="deco-float deco-2">💙</span>
-  <span class="deco-float deco-3">⚽</span>
-  <span class="deco-float deco-4">❤️</span>
-  <span class="deco-float deco-5">✨</span>
-  <span class="deco-float deco-6">⚽</span>
-
   <main>
 
-    <!-- SECTION 1: HERO -->
+    <!-- HERO -->
     <section id="hero">
       <div class="hero-inner">
-        <div class="hero-badge">⚽ Welcome, Poet 👋</div>
-        <h1 class="hero-title">Kenalan dikit sama Barcelona yuu</h1>
-        <p class="hero-subtitle">Ini bukan propaganda kok… cuma sharing dikit aje</p>
-        <p class="hero-desc">
-          Secara psikologi, rasa suka biasanya muncul dari hal sederhana
-          dari yang awalnya cuma lihat, jadi terbiasa, lalu lama-lama terasa dekat.
+        <div class="hero-tag">🌙 Eid Mubarak 1447 H</div>
+        <span class="hero-moon-deco">🌙</span>
+        <h1 class="hero-title">Happy Eid Mubarak<br></h1>
+        <p class="hero-subtitle">
+          Minal Aidin wal Faizin —<br>
+          mohon maaf lahir dan batin yaa
         </p>
-        <div class="hero-poet">💬 Tenang Poet, ini bukan propaganda atau hal hal negatif tentang madrid.</div>
-        <div class="hero-balls">
-          <span class="ball ball-blue"></span>
-          <span class="ball ball-red"></span>
-          <span class="ball ball-yellow"></span>
+        <div class="hero-ornament">
+          <div class="orn-line"></div>
+          <span class="orn-diamond">✦</span>
+          <div class="orn-line right"></div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 2: TENTANG BARCA -->
-    <section id="about">
-      <div class="section-header reveal">
-        <span class="sec-tag">⚽ About barca</span>
-        <div class="sec-divider"></div>
-        <h2 class="sec-title">Sedikit Tentang Barca</h2>
-      </div>
-      <div class="cards-grid">
-        <div class="card reveal">
-          <div class="card-icon">💬</div>
-          <div class="card-label">Motto Klub</div>
-          <div class="card-headline">Més que un club</div>
-          <p class="card-body">Artinya "lebih dari sekadar klub". Buat banyak orang, Barcelona bukan cuma tim bola tapi juga identitas dan kebanggaan.</p>
-          <p class="card-note">Harapannya sih kita juga gitu lebih dari sekedar ehmm</p>
-        </div>
-        <div class="card reveal">
-          <div class="card-icon">🎨</div>
-          <div class="card-label">Filosofi Barca</div>
-          <p class="card-body">Barcelona terkenal dengan sepak bola yang indah, sabar, dan fokus menguasai bola. Banyak orang bilang nonton Barca itu seperti seni dalam sepak bola.</p>
-        </div>
-        <div class="card reveal">
-          <div class="card-icon">🔄</div>
-          <div class="card-label">Gaya Bermain</div>
-          <div class="card-headline">Tiki-taka</div>
-          <p class="card-body">Operan pendek cepat yang bikin lawan capek ngejar bola duluan.</p>
-        </div>
-        <div class="card reveal">
-          <div class="card-icon">👑</div>
-          <div class="card-label">Tokoh Penting</div>
-          <div class="card-headline">Johan Cruyff</div>
-          <p class="card-body">Dia adalah sosok yang membentuk filosofi bermain Barcelona sampai sekarang.</p>
-        </div>
-        <div class="card reveal">
-          <div class="card-icon">🌱</div>
-          <div class="card-label">Akademi Legendaris</div>
-          <div class="card-headline">La Masia</div>
-          <p class="card-body">Tempat lahir banyak pemain hebat Barcelona, contoh Lionel Messi.</p>
-        </div>
-        <div class="card reveal">
-          <div class="card-icon">⭐</div>
-          <div class="card-label">Legenda Klub</div>
-          <div class="card-headline">Lionel Messi</div>
-          <p class="card-body">Salah satu pemain terbaik dalam sejarah Barcelona dan terbaik diidunia.</p>
-        </div>
-        <div class="card reveal">
-          <div class="card-icon">🏟️</div>
-          <div class="card-label">Stadion Ikonik</div>
-          <div class="card-headline">Camp Nou</div>
-          <p class="card-body">Stadion kebanggaan Barcelona dan salah satu yang terbesar di dunia tapi sekarang masih proses renovasi.</p>
-        </div>
-        <div class="card card-special reveal">
-          <div class="card-icon">🔥</div>
-          <div class="card-label">Rival Abadi</div>
-          <div class="card-headline">El Clásico</div>
-          <p class="card-body">Ini pertandingan antara Barcelona dan Real Madrid yang biasanya selalu panas.</p>
-          <p class="card-note">panasnya sih kalau kamu masih madrid tapi kalau sudah barca nggak kok😌</p>
-        </div>
-        <div class="card reveal">
-          <div class="card-icon">💙</div>
-          <div class="card-label">Fans Barcelona</div>
-          <div class="card-headline">Culé / Culers</div>
-          <p class="card-body">Fans Barcelona disebut Culé atau Culers. Ini sebutan untuk fans Barcelona di seluruh dunia.</p>
-        </div>
-      </div>
-      <div class="bottom-note reveal">
-        Dalam perspektif psikologi, pemahaman terhadap simbol, istilah, dan filosofi tertentu dapat
-        membangun keterikatan emosional secara bertahap.<br>
-        Ketika konsep seperti <strong>tiki-taka</strong>, <strong>La Masia</strong>, atau <strong>"Més que un club"</strong> mulai dipahami,
-        biasanya itu menandakan munculnya kedekatan dengan identitas Barcelona.
-      </div>
-    </section>
+    <!-- PESAN -->
+    <section id="pesan">
+      <div class="pesan-card reveal">
+        <div class="pesan-from">Dari abang teknik baik</div>
 
-    <!-- SECTION 3: RIVALRY -->
-    <section id="rivalry">
-      <div class="section-header reveal">
-        <span class="sec-tag">⚡ masalah kecil kita</span>
-        <div class="sec-divider"></div>
-        <h2 class="sec-title">Madrid vs Barca <span class="sec-subtitle">(El Clásico)</span></h2>
-      </div>
-      <div class="rivalry-wrap">
-        <div class="rivalry-card reveal">
-          <span class="rivalry-icon">🤍</span>
-          <div class="rivalry-club">Real Madrid</div>
-          <p class="rivalry-desc">huhuhu poet dedemit.</p>
-          <span class="heart-badge">🤍 Los Blancos</span>
+        <div class="pesan-main">
+          "Selamat Idul Fitri, Poet dan keluarga —<br>
+          <span class="highlight">semoga tahun ini lebih baik</span><br>
+          dari sebelumnya."
         </div>
-        <div class="vs-badge">VS</div>
-        <div class="rivalry-card rivalry-barca reveal">
-          <span class="rivalry-icon">💙</span>
-          <div class="rivalry-club rivalry-club-barca">FC Barcelona</div>
-          <p class="rivalry-desc">belah dada gw isinya barca semua haha</p>
-          <span class="heart-badge">💙 Culés</span>
-        </div>
-      </div>
-      <div class="rivalry-note reveal">
-        <p>secara teori sih kita memang rival</p>
-        <p>dan katanya perbedaan itu malah bikin lebih seru.</p>
-        <div class="rivalry-playful">💬 tapi kalau sama bukannya lebih baik yaa? hehe🫣.</div>
-      </div>
-    </section>
 
-    <!-- SECTION 4: CLOSING -->
-    <section id="closing">
-      <div class="section-header reveal">
-        <span class="sec-tag">🙏 penutup</span>
-        <div class="sec-divider"></div>
-        <h2 class="sec-title">Makasih yaa sudah dibacaa</h2>
-      </div>
-      <div class="closing-grid">
-        <div class="video-wrap reveal">
-          <div class="vc-corner vc-tl"></div>
-          <div class="vc-corner vc-tr"></div>
-          <div class="vc-corner vc-bl"></div>
-          <div class="vc-corner vc-br"></div>
-          <div class="vc-glow"></div>
-          <div class="vc-inner">
-            <video id="closingVideo" src="assets/images/video.mp4" autoplay muted loop playsinline></video>
-            <div class="vc-topbar">
-              <span class="vc-dot red"></span>
-              <span class="vc-dot yellow"></span>
-              <span class="vc-dot blue"></span>
-              <span class="vc-topbar-title">VISCAA BARCAAA</span>
-            </div>
-            <div class="vc-bottombar">
-              <span class="vc-label">👋Makasih Poet!</span>
-              <div class="vc-controls">
-                <button class="vc-btn" id="playPauseBtn" onclick="toggleVideo()">⏸</button>
-                <button class="vc-btn" id="videoMuteBtn" onclick="toggleVideoMute()">🔇</button>
-              </div>
-            </div>
-          </div>
-          <div class="vc-badge vc-b1">⚽</div>
-          <div class="vc-badge vc-b2">💙</div>
-          <div class="vc-badge vc-b3">✨</div>
-          <div class="vc-badge vc-b4">❤️</div>
-        </div>
-        <div class="closing-text reveal">
-          <h3 class="closing-title">Makasih sudah baca sampai sini</h3>
-          <p class="closing-p">
-            Kalau kamu sampai di bagian ini sih berarti kamu beneran baca semuanya.
-            <strong>Respect Poet😻</strong>
+        <div class="pesan-divider"></div>
+
+        <div class="pesan-body">
+          <p>
+            Jujur, nulis ini agak bingung mau nulis apaa hehe.
+            Tapi intinya — <strong>selamat hari raya</strong>.
+            Semoga lebarannya menyenangkan dan banyak ketemu orang-orang yang bikin happy jadi moodnya bagus terus.
           </p>
-          <div class="closing-box">
-            <p>
-              Setiap klub punya cerita, pemain, dan sejarahnya sendiri.
-              Barcelona adalah salah satu klub yang dikenal karena filosofi
-              bermainnya dan akademinya yang melahirkan banyak pemain hebat.
-              <br><br>
-              Itulah sedikit gambaran tentang dunia Barcelona.
-            </p>
-          </div>
-          <p class="closing-final">
-            Kalau suatu saat istilah seperti <strong>tiki-taka</strong> atau <strong>La Masia</strong>
-            tiba-tiba terasa familiar… ya mungkin Barcelona sudah mulai nyangkut sedikit.
+          <p>
+            Jujur di bulan ramadhan ini happy banget gara gara second account itu hahaha.
+            yang awalnya dibuat cuman mau ngikut eh malah di notice sama kamunyaa
+            <em>lebih dari expetasi sih hehe</em> — 
+          </p>
+          <p>
+            mungkin itu aja sih, ga banyak yang mau dibilang. Cuma mau bilang —
+            <strong>Makasihh banyaak  </strong>, dan semoga setelah lebaran ini dan kedepannya
+            menjadi lebih baik dan terus baik untuk kita ehmm.
           </p>
         </div>
+
+        <div class="pesan-sign">
+          <div class="pesan-sign-line"></div>
+          <div class="pesan-sign-name">— IrpanGallagher ✦</div>
+        </div>
       </div>
     </section>
+
+    <!-- DECO -->
+    <div class="deco-section reveal">
+      <div class="deco-item">
+        <span class="deco-emoji">🪔</span>
+        <div class="deco-text">Maaf lahir<br>& batin</div>
+      </div>
+      <div class="deco-item">
+        <span class="deco-emoji">🌙</span>
+        <div class="deco-text">Eid<br>Mubarak</div>
+      </div>
+      <div class="deco-item">
+        <span class="deco-emoji">🍪</span>
+        <div class="deco-text">Selamat<br>makan makan</div>
+      </div>
+    </div>
 
   </main>
 
   <footer>
-    Made with <span class="footer-heart">❤️</span> · For Dinda · 💕
+    Dibuat khusus · Untuk Adinda Meisyah · 🌙
   </footer>
 
-  <script src="main.js"></script>
+  <script>
+    // ── Generate stars ──
+    const starsEl = document.getElementById('stars');
+    for (let i = 0; i < 80; i++) {
+      const s = document.createElement('div');
+      s.className = 'star';
+      const size = Math.random() * 2.5 + 0.5;
+      s.style.cssText = `
+        width:${size}px; height:${size}px;
+        top:${Math.random()*100}%; left:${Math.random()*100}%;
+        --d:${2+Math.random()*4}s;
+        --min:${0.05+Math.random()*0.2};
+        --max:${0.4+Math.random()*0.6};
+        animation-delay:${Math.random()*4}s;
+      `;
+      starsEl.appendChild(s);
+    }
+
+    // ── Progress bar ──
+    const bar = document.getElementById('progressBar');
+    window.addEventListener('scroll', () => {
+      bar.style.width = (window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100) + '%';
+    });
+
+    // ── Scroll reveal ──
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    // ── Navbar reveal on scroll ──
+    const floatnav = document.getElementById('floatnav');
+    const pesanSection = document.getElementById('pesan');
+    const navObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          floatnav.classList.add('visible');
+        } else {
+          if (pesanSection.getBoundingClientRect().top > 0) {
+            floatnav.classList.remove('visible');
+          }
+        }
+      });
+    }, { threshold: 0.1 });
+    navObs.observe(pesanSection);
+
+    // ── Splash ──
+    const splash = document.getElementById('splash');
+    const splashBtn = document.getElementById('splashBtn');
+    const music = document.getElementById('bgMusic');
+
+    splashBtn.addEventListener('click', () => {
+      music.volume = 0.4;
+      music.play().catch(() => {});
+      splash.classList.add('hide');
+      setTimeout(() => splash.style.display = 'none', 700);
+    });
+  </script>
 </body>
 </html>

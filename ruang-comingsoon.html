@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ruang Kamu 💌</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0F1F3D;
+      --gold: #F4C430;
+      --red:  #C0392B;
+      --brown: #8B5E3C;
+      --cream: #FFF8EE;
+      --soft: #c4b8a8;
+      --ff: 'Plus Jakarta Sans', sans-serif;
+      --fd: 'Instrument Serif', serif;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      font-family: var(--ff);
+      background: var(--navy);
+      color: var(--cream);
+      display: flex; align-items: center; justify-content: center;
+      min-height: 100vh; overflow: hidden;
+    }
+
+    /* Stars */
+    .stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+    .star { position: absolute; border-radius: 50%; background: white; animation: twinkle var(--d,3s) ease-in-out infinite alternate; }
+    @keyframes twinkle { from{opacity:var(--min,.1)} to{opacity:var(--max,.7)} }
+
+    /* Card */
+    .card {
+      position: relative; z-index: 1;
+      max-width: 480px; width: 90%;
+      text-align: center;
+      padding: 52px 36px;
+      background: rgba(26,47,82,0.5);
+      border: 1px solid rgba(244,196,48,0.12);
+      border-radius: 32px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.3);
+      animation: fadeUp 0.7s cubic-bezier(0.34,1.5,0.64,1) both;
+    }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+
+    /* Icon */
+    .icon {
+      font-size: 4rem; margin-bottom: 20px; display: block;
+      animation: float 3s ease-in-out infinite alternate;
+      filter: drop-shadow(0 0 20px rgba(244,196,48,0.3));
+    }
+    @keyframes float { from{transform:translateY(0) rotate(-4deg)} to{transform:translateY(-12px) rotate(4deg)} }
+
+    /* Tag */
+    .tag {
+      display: inline-block;
+      background: rgba(244,196,48,0.1);
+      border: 1px solid rgba(244,196,48,0.2);
+      border-radius: 50px; padding: 4px 14px;
+      font-size: 0.7rem; font-weight: 800;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 20px;
+    }
+
+    /* Title */
+    .title {
+      font-family: var(--fd); font-style: italic;
+      font-size: clamp(1.8rem, 5vw, 2.4rem);
+      color: var(--cream); line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .title span { color: var(--gold); }
+
+    /* Divider */
+    .divider {
+      display: flex; align-items: center; gap: 12px;
+      margin: 20px 0;
+    }
+    .div-line { flex: 1; height: 1px; background: linear-gradient(90deg,transparent,rgba(244,196,48,0.2),transparent); }
+    .div-dot { color: var(--gold); font-size: 0.7rem; }
+
+    /* Message */
+    .msg {
+      font-size: 0.92rem; color: var(--soft);
+      line-height: 1.8; margin-bottom: 28px;
+    }
+    .msg strong { color: var(--cream); font-weight: 700; }
+
+    /* Chat bubble kecil */
+    .bubble {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(26,47,82,0.8);
+      border: 1px solid rgba(244,196,48,0.1);
+      border-radius: 50px; padding: 10px 18px;
+      font-size: 0.82rem; font-weight: 600;
+      color: var(--soft); margin-bottom: 28px;
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(244,196,48,0)} 50%{box-shadow:0 0 0 6px rgba(244,196,48,0.08)} }
+    .bubble-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--gold); flex-shrink: 0;
+      animation: blink 1.5s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+    /* Back button */
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 28px; border-radius: 50px;
+      border: 1px solid rgba(244,196,48,0.2);
+      background: transparent; color: var(--soft);
+      font-family: var(--ff); font-size: 0.85rem; font-weight: 700;
+      cursor: pointer; text-decoration: none;
+      transition: all 0.2s;
+    }
+    .back-btn:hover {
+      background: rgba(244,196,48,0.08);
+      border-color: rgba(244,196,48,0.35);
+      color: var(--gold);
+    }
+
+    /* Progress dots */
+    .progress-dots {
+      display: flex; justify-content: center; gap: 8px;
+      margin-bottom: 24px;
+    }
+    .pdot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(244,196,48,0.2);
+    }
+    .pdot.active { background: var(--gold); }
+    .pdot.done   { background: rgba(74,222,128,0.6); }
+  </style>
+</head>
+<body>
+
+  <div class="stars" id="stars"></div>
+
+  <div class="card">
+    <span class="icon">💌</span>
+
+    <div class="tag">✦ coming soon</div>
+
+    <h1 class="title">Ruang <span>kamu</span><br>lagi disiapkan</h1>
+
+    <div class="divider">
+      <div class="div-line"></div>
+      <div class="div-dot">✦</div>
+      <div class="div-line"></div>
+    </div>
+
+    <p class="msg">
+      Halaman ini lagi dalam proses.<br>
+      <strong>bentar yaa</strong> — masih nyari konsep hehehe.
+      <a>Mungkin kurang lebih sih nanti sama kayak feedback kemarin.</a>
+    </p>
+
+    <div class="progress-dots">
+      <div class="pdot done"></div>
+      <div class="pdot done"></div>
+      <div class="pdot active"></div>
+      <div class="pdot"></div>
+    </div>
+
+    <div class="bubble">
+      <div class="bubble-dot"></div>
+      Irpan lagi buat sesuatu buat kamu...
+    </div>
+
+    <a href="index.html" class="back-btn">
+      ← Balik ke halaman utama
+    </a>
+  </div>
+
+  <script>
+    // Stars
+    const starsEl = document.getElementById('stars');
+    for (let i = 0; i < 70; i++) {
+      const s = document.createElement('div');
+      s.className = 'star';
+      const size = Math.random() * 2.5 + 0.5;
+      s.style.cssText = `width:${size}px;height:${size}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${2+Math.random()*4}s;--min:${0.05+Math.random()*0.15};--max:${0.3+Math.random()*0.6};animation-delay:${Math.random()*5}s;`;
+      starsEl.appendChild(s);
+    }
+  </script>
+</body>
+</html>
